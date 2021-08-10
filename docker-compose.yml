@@ -1,0 +1,43 @@
+version: '3.6'
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  redis-master:
+    image: bitnami/redis:latest
+    restart: always
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_REPLICATION_MODE=master
+    ports:
+    - '6379'
+    networks:
+      - app-tier
+
+  main-be:
+    build: .
+    restart: always
+    environment:
+      DEBUG: ${DEBUG}
+      TITLE_API: ${TITLE_API}
+      VERSION_API: ${VERSION_API}
+
+      DB_PORT: ${DB_PORT}
+      DB_HOST: ${DB_HOST}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PRIMARY_NAME: ${DB_PRIMARY_NAME}
+      DB_LOGS_NAME: ${DB_LOGS_NAME}
+      DB_USER: ${DB_USER}
+      DB_SSL_CERT_PATH: ${DB_SSL_CERT_PATH}
+
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+
+      SECRET_KEY: ${SECRET_KEY}
+      ENCRYPT_ALGORITHM: ${ENCRYPT_ALGORITHM}
+    command: "gunicorn -k uvicorn.workers.UvicornWorker manage:app --daemon -b :8000"
+    ports:
+    - "8000:8000"
