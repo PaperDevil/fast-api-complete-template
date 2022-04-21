@@ -38,6 +38,5 @@ services:
 
       SECRET_KEY: ${SECRET_KEY}
       ENCRYPT_ALGORITHM: ${ENCRYPT_ALGORITHM}
-    command: "gunicorn -k uvicorn.workers.UvicornWorker manage:app --daemon -b :8000"
     ports:
     - "8000:8000"

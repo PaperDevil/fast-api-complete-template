@@ -10,3 +10,5 @@ redis~=3.5.3
 passlib~=1.7.4
 alembic~=1.5.8
 uvicorn~=0.13.4
+phonenumbers
+python-multipart
