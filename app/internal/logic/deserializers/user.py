@@ -1,9 +1,7 @@
 from asyncpg import Record
 
 from app.internal.logic.deserializers.base import BaseDeserializer
-from app.internal.logic.entities.db.role import Role
 from app.internal.logic.entities.db.user import User
-from app.internal.logic.entities.enum.roles import RoleEnum
 from app.internal.web.depends.auth import MyOAuth2PasswordRequestForm
 
 

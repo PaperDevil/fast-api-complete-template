@@ -2,7 +2,6 @@ from typing import Optional
 
 from pydantic import Field
 
-from app.internal.logic.entities.db.role import Role
 from app.internal.logic.entities.db.user import User
 from app.internal.logic.entities.request.base import AbstractRequestModel
 

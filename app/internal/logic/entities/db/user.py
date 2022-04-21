@@ -11,7 +11,6 @@ from app.external.utils.phone import get_phone_national_number
 from app.internal.drivers.cache_driver import CacheDriver
 from app.internal.drivers.crypt_driver import CryptDriver
 from app.internal.logic.entities.db.base import AbstractDbModel
-from app.internal.logic.entities.db.role import Role
 from app.internal.logic.entities.response.token import TokensResponse
 from app.internal.logic.entities.response.user.detail import UserDetailResponse
 from app.internal.logic.entities.response.user.simple import UserSimpleResponse
@@ -32,7 +31,6 @@ class User(AbstractDbModel):
                  middle_name: Optional[str] = None,
                  last_name: Optional[str] = None,
                  position: Optional[str] = None,
-                 role: Optional[Role] = None,
                  head_user: Optional = None,
                  # # # AUTH # # #
                  auth_token: Optional[str] = None,
@@ -49,7 +47,6 @@ class User(AbstractDbModel):
         self.middle_name = middle_name
         self.last_name = last_name
         self.position = position
-        self.role = role
         self.head_user = head_user
         self.auth_token = auth_token
         self.refresh_token = refresh_token
@@ -60,7 +57,7 @@ class User(AbstractDbModel):
         User(id={self.id}, created_at={self.created_at}, edited_at={self.edited_at}, is_delete={self.is_delete},
         phone={self.phone}, email={self.email}, login={self.login}, password={self.password},
         hash_password={self.hash_password}, first_name={self.first_name}, middle_name={self.middle_name},
-        last_name={self.last_name}, position={self.position}, role={self.role}, head_user={self.head_user})
+        last_name={self.last_name}, position={self.position}, head_user={self.head_user})
         """
 
     @staticmethod
